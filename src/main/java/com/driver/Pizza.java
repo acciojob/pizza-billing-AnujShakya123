@@ -11,17 +11,16 @@ public class Pizza {
     private int paperbagprice=20;
     private Boolean isVeg;
     private String bill;
-<<<<<<< HEAD
+
     private Boolean toppingsselected=false;
     private Boolean paperbagselected=false;
     private Boolean cheeseselected=false;
-=======
 
     private int vegBasePrice=300;
     private int nonVegBasePrice=400;
->>>>>>> 77496334a9eb3a6b8eff8d9bb71f039d493bc870
+
     public Pizza(Boolean isVeg){
-        this.isVeg = isVeg ? vegBasePrice:nonVegBasePrice;
+        this.isVeg = isVeg ;
         // your code goes here
         if(isVeg){
             price+=vegbaseprice;
