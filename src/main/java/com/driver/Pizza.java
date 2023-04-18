@@ -1,4 +1,4 @@
-package com.driver;
+ package com.driver;
 
 public class Pizza {
 
@@ -6,8 +6,10 @@ public class Pizza {
     private Boolean isVeg;
     private String bill;
 
+    private int vegBasePrice=300;
+    private int nonVegBasePrice=400;
     public Pizza(Boolean isVeg){
-        this.isVeg = isVeg;
+        this.isVeg = isVeg ? vegBasePrice:nonVegBasePrice;
         // your code goes here
     }
 
