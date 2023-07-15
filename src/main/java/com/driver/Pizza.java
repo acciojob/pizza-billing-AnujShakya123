@@ -2,81 +2,71 @@
 
 public class Pizza {
 
-    private int price;
-    private Boolean isVeg;
+     private int totalPrice;
+    private int vegPrice;
+    private boolean isVeg;
     private String bill;
-    public static int vegBasePrice = 300;
-    public static int nonVegBasePrice = 400;
-    public static int cheesePrice = 80;
-    public static int vegToppingPrice = 70;
-    public static int nonVegToppingPrice = 120;
-    public static int takeAwayPrice = 20;
+    private int cheesePrice;
+    private int basePrice;
+    private int toppingPrice;
+    private int paperBagPrice;
+    private boolean isCheeseAdded;
+    private boolean isToppingsAdded;
+    private boolean isPaperBagAdded;
+    private boolean isBillGenerated;
 
-    private Boolean isCheeseAdded;
-    private Boolean isToppingAdded;
-    private Boolean isTakeAwayAdded;
-    private int myToppingPrice = 0;
+     public Pizza(Boolean isVeg){
+     this.isVeg=isVeg;
 
-    private int basePrice = 0;
+     if(isVeg==true){
+         basePrice=300;
+         toppingPrice=70;
+     }
+     else{
+         basePrice=400;
+         toppingPrice=120;
+     }
+     basePrice=80;
+     paperBagPrice=20;
+     totalPrice=basePrice;
+     bill="Base price of Pizza: "+ basePrice+"\n";
+     }
+     public int getPrice(){
+         return this.totalPrice;
+     }
+     public void addExtraCheese(){
+         if(isCheeseAdded==false){
+             totalPrice=totalPrice + cheesePrice;
+             isCheeseAdded=true;
+             bill=bill+"Extra Cheese Added: "+ cheesePrice;
+         }
+     }
 
-    public Pizza(Boolean isVeg) {
-        this.isVeg = isVeg;
-        this.basePrice = isVeg ? vegBasePrice : nonVegBasePrice;
-        this.price = 0;
-        this.bill = "";
-        this.isCheeseAdded = false;
-        this.isToppingAdded = false;
-        this.isTakeAwayAdded = false;
-    }
-
-    public int getPrice() {
-        this.price = basePrice;
-        if (isCheeseAdded) {
-            this.price += cheesePrice;
-        }
-        if (isToppingAdded) {
-            this.price += this.myToppingPrice;
-        }
-        if (isTakeAwayAdded) {
-            this.price += takeAwayPrice;
-        }
-        return this.price;
-    }
-
-    public void addExtraCheese() {
-        if (!isCheeseAdded) {
-            isCheeseAdded = true;
-        }
-    }
-
-    public void addExtraToppings() {
-        if (!isToppingAdded) {
-            isToppingAdded = true;
-            this.myToppingPrice += isVeg ? vegToppingPrice : nonVegToppingPrice;
-        }
-    }
-
+     public void addExtraToppings(){
+         if(isToppingsAdded==false){
+             totalPrice=totalPrice+totalPrice;
+             bill=bill+"Extra Topping added: "+ toppingPrice;
+         }
+     }
     public void addTakeaway() {
-        if (!isTakeAwayAdded) {
-            isTakeAwayAdded = true;
-        }
-    }
+         if(!isPaperBagAdded){
+             isPaperBagAdded=true;
+             totalPrice=totalPrice + paperBagPrice;
+             bill=bill+"Paperbag Added: "+ paperBagPrice;
+         }
+     }
 
-    public String getBill() {
-        this.price = getPrice(); // Calculate the total price before returning the bill
-        String bill = "Base Price of Pizza: " + this.basePrice + "\n";
-        if (isCheeseAdded) {
-            bill += "Extra Cheese Added: " + cheesePrice + "\n";
-        }
-        if (isToppingAdded) {
-            bill += "Extra Toppings Added: " + myToppingPrice + "\n";
-        }
-        if (isTakeAwayAdded) {
-            bill += "Paperbag Added: " + takeAwayPrice + "\n";
-        }
-        bill += "Total Price: " + this.price + "\n";
-        this.bill = bill;
-        return this.bill;
+     public String getBill(){
+         if(!isBillGenerated){
+             isBillGenerated=true;
+             if(isCheeseAdded)
+                 bill=bill+"Extra Cheese Added: "+ cheesePrice+"\n";
+             if(isToppingsAdded)
+                 bill=bill+"Extra Toppings Added: "+ toppingPrice+"\n";
+             if(isPaperBagAdded)
+                 bill=bill+"Paperbag Added: "+ paperBagPrice+"\n";
+             bill=bill+"Total price: "+ totalPrice;
+         }
+         return this.bill;
     }
 }
-
